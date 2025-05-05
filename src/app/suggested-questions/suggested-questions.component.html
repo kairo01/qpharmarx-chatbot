@@ -1,0 +1,9 @@
+<div class="suggested-questions">
+    <button 
+      *ngFor="let question of suggestedQuestions" 
+      class="question-button"
+      (click)="onQuestionClick(question.text)">
+      {{ question.text }}
+    </button>
+  </div>
+  

@@ -1,0 +1,34 @@
+.message-container {
+    display: flex;
+    margin-bottom: 16px;
+    align-items: flex-start;
+    
+    &.user-message {
+      flex-direction: row-reverse;
+      
+      .message-bubble {
+        background-color: #64b5f6;
+        color: white;
+        border-bottom-right-radius: 4px;
+      }
+    }
+    
+    &.ai-message {
+      flex-direction: row;
+      
+      .message-bubble {
+        background-color: #e3f2fd;
+        color: #333;
+        border-bottom-left-radius: 4px;
+      }
+    }
+    
+    .message-bubble {
+      padding: 10px 14px;
+      border-radius: 18px;
+      max-width: 80%;
+      word-wrap: break-word;
+      margin: 0 8px;
+    }
+  }
+  

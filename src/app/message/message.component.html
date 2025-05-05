@@ -1,0 +1,7 @@
+<div class="message-container" [ngClass]="{'user-message': message.role === 'user', 'ai-message': message.role === 'assistant'}">
+    <app-avatar [isAi]="message.role === 'assistant'"></app-avatar>
+    <div class="message-bubble">
+      {{ message.content }}
+    </div>
+  </div>
+  

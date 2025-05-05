@@ -1,0 +1,28 @@
+.suggested-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 16px;
+    border-top: 1px solid #eee;
+    background-color: white;
+    
+    .question-button {
+      background-color: #e3f2fd;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 14px;
+      color: #2196f3;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      
+      &:hover {
+        background-color: #bbdefb;
+      }
+    }
+  }
+  
