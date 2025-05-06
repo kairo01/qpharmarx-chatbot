@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { ChatWindowComponent } from "./chat-window/chat-window.component";
+import { Component } from "@angular/core"
+import { CommonModule } from "@angular/common"
+import { ChatWindowComponent } from "./chat-window/chat-window.component"
 
 @Component({
   selector: "app-root",
@@ -10,5 +10,10 @@ import { ChatWindowComponent } from "./chat-window/chat-window.component";
   imports: [CommonModule, ChatWindowComponent],
 })
 export class AppComponent {
-  title = "qpharmarx-chatbot";
+  title = "qpharmarx-chatbot"
+  isChatOpen = false
+
+  toggleChat() {
+    this.isChatOpen = !this.isChatOpen
+  }
 }

@@ -1,10 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { ChatService } from "../chat.service";
-import { MessageComponent } from "../message/message.component";
-import { SuggestedQuestionsComponent } from "../suggested-questions/suggested-questions.component";
-import { UserInputComponent } from "../user-input/user-input.component";
-import { Message } from "../models/message";
+import {
+  Component,
+  type OnInit,
+  ViewChild,
+  type ElementRef,
+  type AfterViewChecked,
+  Output,
+  EventEmitter,
+} from "@angular/core"
+import { CommonModule } from "@angular/common"
+import { ChatService } from "../chat.service"
+import { MessageComponent } from "../message/message.component"
+import { SuggestedQuestionsComponent } from "../suggested-questions/suggested-questions.component"
+import { UserInputComponent } from "../user-input/user-input.component"
+import { Message } from "../models/message"
 
 @Component({
   selector: "app-chat-window",
@@ -14,38 +22,39 @@ import { Message } from "../models/message";
   imports: [CommonModule, MessageComponent, SuggestedQuestionsComponent, UserInputComponent],
 })
 export class ChatWindowComponent implements OnInit, AfterViewChecked {
-  @ViewChild("messagesContainer") private messagesContainer!: ElementRef;
-  messages: Message[] = [];
-  isLoading = false;
+  @ViewChild("messagesContainer") private messagesContainer!: ElementRef
+  @Output() closeChat = new EventEmitter<void>()
+
+  messages: Message[] = []
+  isLoading = false
 
   constructor(private chatService: ChatService) {}
 
   ngOnInit(): void {
     this.chatService.messages$.subscribe((messages) => {
-      this.messages = messages;
-    });
+      this.messages = messages
+    })
 
     this.chatService.loading$.subscribe((loading) => {
-      this.isLoading = loading;
-    });
+      this.isLoading = loading
+    })
   }
 
   ngAfterViewChecked(): void {
-    this.scrollToBottom();
+    this.scrollToBottom()
   }
 
   scrollToBottom(): void {
     try {
-      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight
     } catch (err) {}
   }
 
   onQuestionSelected(question: string): void {
-    this.chatService.sendMessage(question);
+    this.chatService.sendMessage(question)
   }
 
-  closeChat(): void {
-    console.log("Chat closed");
-    this.chatService.clearChat();
+  onCloseChat(): void {
+    this.closeChat.emit()
   }
 }

@@ -1,3 +1,21 @@
 <div class="app-container">
-  <app-chat-window></app-chat-window>
+  <div class="content">
+    <h1 class="title">QPharmaRx Demo</h1>
+    <p class="description">
+      This is a demonstration of the QPharmaRx AI chatbot. The chatbot provides
+      information about medications, side effects, and general health advice.
+    </p>
+  </div>
+
+  <!-- Chat Button -->
+  <button class="chat-button" (click)="toggleChat()" *ngIf="!isChatOpen">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
+  <!-- Chat Popup -->
+  <div class="chat-popup" *ngIf="isChatOpen">
+    <app-chat-window (closeChat)="toggleChat()"></app-chat-window>
+  </div>
 </div>
